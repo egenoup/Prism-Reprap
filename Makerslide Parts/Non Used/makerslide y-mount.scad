@@ -25,7 +25,7 @@ module makerslideymount()
 		{		
 			translate([0,0,0]) cube([17.5,25,t]);
 			translate([17.4,0,0]) cube([8.6,20,t]);
-			translate([0,0,0]) cube([t,25,17]);
+			translate([0,0,0]) cube([t,25,15]);
 		}
 
 		// holes
@@ -36,15 +36,15 @@ module makerslideymount()
 	// triangle supports
 	translate([19.9,6,2.9]) rotate([0,-90,90]) difference()
 	{
-		translate([0,0,0]) cube([14,14,t]);
-		translate([0,0,-0.1]) rotate([0,0,-45]) cube([14,30,t+1]);
+		translate([0,0,0]) cube([12,14,t]);
+		translate([0,2,-0.1]) rotate([0,0,-45]) cube([12,30,t+1]);
 		translate([-0.1,0,-0.1]) cube([9,3,t+0.1]);
 	}
 
 	translate([19.9,25,2.9]) rotate([0,-90,90]) difference()
 	{
-		translate([0,0,0]) cube([14,14,t]);
-		translate([0,0,-0.1]) rotate([0,0,-45]) cube([14,30,t+1]);
+		translate([0,0,0]) cube([12,14,t]);
+		translate([0,2,-0.1]) rotate([0,0,-45]) cube([14,30,t+1]);
 		translate([-0.1,0,-0.1]) cube([9,3,t+0.1]);
 
 	}

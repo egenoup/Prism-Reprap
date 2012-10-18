@@ -4,27 +4,45 @@
 
 include <configuration.scad>;
 
-h = 4;   				// base thickness
+h = 6;   				// base thickness
 o = 0.1;				//  overlap amount
 
 $fn=30;
 
+
 wireclip(h);
 translate([19,6,0]) mirror([1,0,0]) wireclip(h);
 
+translate([25,0,0])
+{wireclip(h);
+translate([19,6,0]) mirror([1,0,0]) wireclip(h);
+}
 
+translate([0,35,0])
+{
+wireclip(h);
+translate([19,6,0]) mirror([1,0,0]) wireclip(h);
+}
+
+translate([25,35,0])
+{
+wireclip(h);
+translate([19,6,0]) mirror([1,0,0]) wireclip(h);
+}
+
+//#translate([2,2,0]) cube([1,20,1]);
 module wireclip(wch)
 {
 	difference()
 	{
 		union()
 		{
-			cube([2,24.5,wch]);
+			cube([2,24,wch]);
 			translate([2,0,0]) arm(wch);
-			translate([2,24.5,0]) mirror([0,1,0]) arm(wch);
+			translate([2,24,0]) mirror([0,1,0]) arm(wch);
 		}
-		translate([2.35,2,-o]) rotate([0,0,135]) springnotch(wch+2*o);
-		translate([2,22.15,-o]) rotate([0,0,45]) springnotch(wch+2*o);
+		//translate([2.35,2,-o]) rotate([0,0,135]) springnotch(wch+2*o);
+		//translate([2,22.15,-o]) rotate([0,0,45]) springnotch(wch+2*o);
 
 		translate([1.6,0,-o]) rotate([0,0,135]) cube([3,2,wch+2*o]);
 		translate([1.6,24.5,-o]) rotate([0,0,135]) cube([2,3,wch+2*o]);

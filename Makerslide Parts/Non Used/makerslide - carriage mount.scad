@@ -23,57 +23,43 @@ ps = 80;		// mounting plate length (min 70mm)
 pt = 6;		// mounting plate thickness
 sp = 5;			// space between parts
 
-makerslidexmount();
-translate([21+pt+sp,-10,0]) mirror([0,1,0]) makerslidexmount();
+makerslideycarriage();
 
-module makerslidexmount()
+module makerslideycarriage()
 {
-	translate([-9.5,10,0]) 
-		rotate([0,0,-90]) 
-			z_linear_bearings(override_height=oh,luu_version=lv);
-
-	leadscrewmount();
-
-	translate([0,0,0]) msmount();
+	union()
+		{
+		translate([12,0,0]) leadscrewmount();
+	
+		translate([0,-60,0]) msycmount();
+		}
 
 
 }
 
-module msmount()
+module msycmount()
 {
 	
 	difference()
 	{
-		translate([-9,20+((ps-50)/2),0]) rotate([0,0,180]) cube([pt,ps,40]);
+		translate([0,0,0]) rotate([0,0,0]) cube([pt,ps,40]);
 		translate([-8,17.5,16]) rotate([0,0,180]) cube([pt+2,15,5]);
 
 		// Mounting holes
-		translate([-8,-34,10]) 
-			rotate([0,90,180]) 
+		#translate([-0.1,68,10]) 
+			rotate([0,90,0]) 
 				cylinder(h=pt+2,r=m4_diameter/2);
-		translate([-8,-34,30]) 
-			rotate([0,90,180]) 
+		#translate([-0.1,68,30]) 
+			rotate([0,90,0]) 
 				cylinder(h=pt+2,r=m4_diameter/2);
-		translate([-8,25,10]) 
-			rotate([0,90,180]) 
+		#translate([-0.1,12,10]) 
+			rotate([0,90,0]) 
 				cylinder(h=pt+2,r=m4_diameter/2);
-		translate([-8,25,30]) 
-			rotate([0,90,180]) 
+		#translate([-0.1,12,30]) 
+			rotate([0,90,0]) 
 				cylinder(h=pt+2,r=m4_diameter/2);
 	}
 
-	// triangle supports
-	translate([-9.1,-16.85,0])difference()
-	{
-		translate([0,0,0]) cube([4,7,40]);
-		translate([0,0,-0.1]) rotate([0,0,-30]) cube([4,9,41]);
-	}
-
-	translate([-9.1,-23,0]) mirror([0,1,0]) difference()
-	{
-		translate([0,0,0]) cube([4,7,40]);
-		translate([0,0,-0.1]) rotate([0,0,-30]) cube([4,9,41]);
-	}
 }
 
 module leadscrewmount()
